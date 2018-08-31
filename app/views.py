@@ -61,3 +61,12 @@ class ItemUpdateView(LoginRequiredMixin, UpdateView):
 class ItemDeleteView(LoginRequiredMixin, DeleteView):
     model = Item
     success_url = reverse_lazy('index')
+
+
+# _______________________ここから下は勉強用_______________________
+from django.views.generic import TemplateView
+
+class SampleTemplateView(TemplateView):
+    template_name = "app/sample.html"
+
+
