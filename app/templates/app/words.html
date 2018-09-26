@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>HTMLの練習</title>
+</head>
+<body>
+ここが英単語一覧画面です．
+
+{% for word in words_list %}
+<p>
+<input type='checkbox' name='en_word' value=0>
+{{ word.en_word }} 
+</p>
+{% endfor %}
+
+<p>{{ words_list }}</p>
+
+<!-- <form name="form1">
+  <input type="checkbox" name="fruits" value="りんご">りんご<br>
+  <input type="checkbox" name="fruits" value="バナナ">バナナ<br>
+  <input type="checkbox" name="fruits" value="オレンジ">オレンジ<br>
+  <input type="button" value="選択" onclick="myCheck();"> 
+</form> -->
+
+</body>
+</html>

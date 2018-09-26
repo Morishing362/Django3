@@ -1,5 +1,6 @@
 from django.urls import path
-from .views import ItemFilterView, ItemDetailView, ItemCreateView, ItemUpdateView, ItemDeleteView, SampleTemplateView
+from .views import ItemFilterView, ItemDetailView, ItemCreateView, ItemUpdateView, ItemDeleteView
+from .views import SampleTemplateView, WordsAllView
 
 
 urlpatterns = [
@@ -15,4 +16,6 @@ urlpatterns = [
     path('delete/<int:pk>/', ItemDeleteView.as_view(), name='delete'),
     # 勉強用テスト画面
     path('sample/', SampleTemplateView.as_view(), name='sample'),
+    # 英単語一覧画面
+    path('words/', WordsAllView.as_view(), name='words'),
 ]

@@ -1,11 +1,11 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
-from django.views.generic import ListView, DetailView
+from django.views.generic import ListView, DetailView, TemplateView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django_filters.views import FilterView
 
 from pure_pagination.mixins import PaginationMixin
-from .models import Item
+from .models import Item, Words
 from .filters import ItemFilter
 from .forms import ItemForm
 
@@ -63,10 +63,29 @@ class ItemDeleteView(LoginRequiredMixin, DeleteView):
     success_url = reverse_lazy('index')
 
 
+
+
 # _______________________ここから下は勉強用_______________________
-from django.views.generic import TemplateView
 
 class SampleTemplateView(TemplateView):
     template_name = "app/sample.html"
+
+# 英単語一覧画面
+class WordsAllView(ListView):
+    model = Words
+    template_name = 'app/words.html'
+    
+    four_words_1 = [Words.objects.get(pk=1).en_word, 
+                    Words.objects.get(pk=2).en_word,
+                    Words.objects.get(pk=3).en_word,
+                    Words.objects.get(pk=4).en_word,]
+
+    four_words_2 = [Words.objects.get(pk=5).en_word, 
+                    Words.objects.get(pk=6).en_word,
+                    Words.objects.get(pk=7).en_word,
+                    Words.objects.get(pk=8).en_word,]
+        
+
+
 
 

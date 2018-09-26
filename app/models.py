@@ -1,6 +1,6 @@
 from django.db import models
 from django.core import validators
-from separatedvaluesfield.models import SeparatedValuesField
+
 
 
 class Item(models.Model):
@@ -42,21 +42,34 @@ class Item(models.Model):
         verbose_name = 'アイテム'
         verbose_name_plural = 'アイテム'
 
+# ここから勉強のため
+
+class Words(models.Model):
+
+    number = models.IntegerField(
+        verbose_name='番号'
+    )
+
+    en_word = models.CharField(
+        verbose_name='英単語',
+        max_length=200,
+    )
+
+    jp_word = models.CharField(
+        verbose_name='日本語訳',
+        max_length=200,
+    )
+
+    def __str__(self):
+        return self.en_word
+
+    class Meta:
+        verbose_name = '単語'
+        verbose_name_plural = '単語'
 
 
 
 
-class EnglishWordTest(models.Model):
-
-    name = models.CharField(
-        max_length=150,
-        )
-
-    Words = SeparatedValuesField(
-        max_length=150,
-        cast=int,
-        token=',',
-        )
     
 
 
