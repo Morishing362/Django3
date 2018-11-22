@@ -9,6 +9,8 @@ from .models import Item, Words
 from .filters import ItemFilter
 from .forms import ItemForm
 
+import json
+import collections as cl
 
 # Create your views here.
 # 検索一覧画面
@@ -74,16 +76,10 @@ class SampleTemplateView(TemplateView):
 class WordsAllView(ListView):
     model = Words
     template_name = 'app/words.html'
-    
-    four_words_1 = [Words.objects.get(pk=1).en_word, 
-                    Words.objects.get(pk=2).en_word,
-                    Words.objects.get(pk=3).en_word,
-                    Words.objects.get(pk=4).en_word,]
 
-    four_words_2 = [Words.objects.get(pk=5).en_word, 
-                    Words.objects.get(pk=6).en_word,
-                    Words.objects.get(pk=7).en_word,
-                    Words.objects.get(pk=8).en_word,]
+
+
+
         
 
 
