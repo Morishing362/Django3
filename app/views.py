@@ -64,18 +64,13 @@ class ItemDeleteView(LoginRequiredMixin, DeleteView):
     model = Item
     success_url = reverse_lazy('index')
 
-
-
-
-# _______________________ここから下は勉強用_______________________
-
-class SampleTemplateView(TemplateView):
-    template_name = "app/sample.html"
-
-# 英単語一覧画面
 class WordsAllView(ListView):
     model = Words
     template_name = 'app/words.html'
+
+class QuizView(ListView):
+    model = Words
+    template_name = 'app/quiz.html'
 
 
 

@@ -1,6 +1,6 @@
 from django.urls import path
 from .views import ItemFilterView, ItemDetailView, ItemCreateView, ItemUpdateView, ItemDeleteView
-from .views import SampleTemplateView, WordsAllView
+from .views import WordsAllView, QuizView
 
 
 urlpatterns = [
@@ -14,8 +14,8 @@ urlpatterns = [
     path('update/<int:pk>/', ItemUpdateView.as_view(), name='update'),
     # 削除画面
     path('delete/<int:pk>/', ItemDeleteView.as_view(), name='delete'),
-    # 勉強用テスト画面
-    path('sample/', SampleTemplateView.as_view(), name='sample'),
     # 英単語一覧画面
     path('words/', WordsAllView.as_view(), name='words'),
+    # 英単語クイズ
+    path('quiz/', QuizView.as_view(), name='quiz'),
 ]

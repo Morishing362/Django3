@@ -42,8 +42,6 @@ class Item(models.Model):
         verbose_name = 'アイテム'
         verbose_name_plural = 'アイテム'
 
-# ここから勉強のため
-
 class Words(models.Model):
 
     number = models.IntegerField(
@@ -66,7 +64,6 @@ class Words(models.Model):
     class Meta:
         verbose_name = '単語'
         verbose_name_plural = '単語'
-
 
 
 

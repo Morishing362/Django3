@@ -1,46 +1,91 @@
 {% load static %}
 <!DOCTYPE html>
 <html>
-<head>
-<title>英単語テスト</title>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-<script src="{% static "app/js/select_only_one.js" %}"></script>
-<script>
-  var words_array = {
-    {% for words in words_list %}
-      {{ words.number }} : {
-        en : "{{ words.en_word }}",
-        jp : "{{ words.jp_word }}",
-      },
-    {% endfor %}
-  };
-</script>
-</head>
-<body>
-  <div>英単語テスト</div>
-  <p id=100></p>
-  <form name="form0" action="">
-    <input id="jp0" type="checkbox" class="problem0" /><label id=0 for="jp0"></label><br />
-    <input id="jp1" type="checkbox" class="problem0" /><label id=1 for="jp1"></label><br />
-    <input id="jp2" type="checkbox" class="problem0" /><label id=2 for="jp2"></label><br />
-    <input id="jp3" type="checkbox" class="problem0" /><label id=3 for="jp3"></label><br />
-  </form>
-  <p id=101></p>
-  <form name="form1" action="">
-    <input id="jp4" type="checkbox" class="problem1" /><label id=4 for="jp4"></label><br />
-    <input id="jp5" type="checkbox" class="problem1" /><label id=5 for="jp5"></label><br />
-    <input id="jp6" type="checkbox" class="problem1" /><label id=6 for="jp6"></label><br />
-    <input id="jp7" type="checkbox" class="problem1" /><label id=7 for="jp7"></label><br />
-  </form>
-  <p id=102></p>
-  <form name="form2" action="">
-    <input id="jp8" type="checkbox" class="problem2" /><label id=8 for="jp8"></label><br />
-    <input id="jp9" type="checkbox" class="problem2" /><label id=9 for="jp9"></label><br />
-    <input id="jp10" type="checkbox" class="problem2" /><label id=10 for="jp10"></label><br />
-    <input id="jp11" type="checkbox" class="problem2" /><label id=11 for="jp11"></label><br />
-  </form>
-  <input type="button" value="採点(一度しか押せません)" onclick="Correct_Or_Not(); disabled=true;" />
-  <p id="out"></p>
-</body>
-<script src="{% static "app/js/problems.js" %}"></script>
+  <head>
+    <title>英単語テスト</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="{% static "app/js/select_only_one.js" %}"></script>
+    <script>
+      var words_array = {
+        {% for words in words_list %}
+          {{ words.number }} : {
+            en : "{{ words.en_word }}",
+            jp : "{{ words.jp_word }}",
+          },
+        {% endfor %}
+      };
+      console.log(words_array);
+
+      var id = [1, 2, 3, 4, 5, 6, 7, 8]; 
+      shuffle_array(id);
+
+      var problem_id_set = [];
+      for (var i=0; i<8; i++){
+      new_7_id = id.filter(n => n !== id[i]);
+      new_4_id = random_extract(new_7_id, 3);
+      new_4_id.push(id[i]);
+      shuffle_array(new_4_id);
+      problem_id_set[i] = new_4_id;
+      }
+      console.log(problem_id_set);
+
+      function shuffle_array(array){
+        for(var i = array.length - 1; i > 0; i--){
+          var r = Math.floor(Math.random() * (i + 1));
+          var tmp = array[i];
+          array[i] = array[r];
+          array[r] = tmp;
+          }
+      };
+      function random_extract(array, num) {
+        var a = array;
+        var t = [];
+        var r = [];
+        var l = a.length;
+        var n = num < l ? num : l;
+        while (n-- > 0) {
+          var i = Math.random() * l | 0;
+          r[n] = t[i] || a[i];
+          --l;
+          t[i] = t[l] || a[l];
+        }
+        return r;
+      };
+    </script>
+    <link href="{% static "app/css/design.css" %}" rel="stylesheet">
+  </head>
+  <body>
+    <div>英単語テスト</div>
+    <p id=100></p>
+    <form name="form0" action="">
+      <input id="jp0" type="checkbox" class="problem0" /><label class="checkbox" id=0 for="jp0"></label>
+      <input id="jp1" type="checkbox" class="problem0" /><label class="checkbox" id=1 for="jp1"></label>
+      <input id="jp2" type="checkbox" class="problem0" /><label class="checkbox" id=2 for="jp2"></label>
+      <input id="jp3" type="checkbox" class="problem0" /><label class="checkbox" id=3 for="jp3"></label><br />
+    </form>
+    <p id=101></p>
+    <form name="form1" action="">
+      <input id="jp0" type="checkbox" class="problem1" /><label class="checkbox" id=4 for="jp0"></label>
+      <input id="jp1" type="checkbox" class="problem1" /><label class="checkbox" id=5 for="jp1"></label>
+      <input id="jp2" type="checkbox" class="problem1" /><label class="checkbox" id=6 for="jp2"></label>
+      <input id="jp3" type="checkbox" class="problem1" /><label class="checkbox" id=7 for="jp3"></label><br />
+    </form>
+    <p id=102></p>
+    <form name="form2" action="">
+      <input id="jp0" type="checkbox" class="problem2" /><label class="checkbox" id=8 for="jp0"></label>
+      <input id="jp1" type="checkbox" class="problem2" /><label class="checkbox" id=9 for="jp1"></label>
+      <input id="jp2" type="checkbox" class="problem2" /><label class="checkbox" id=10 for="jp2"></label>
+      <input id="jp3" type="checkbox" class="problem2" /><label class="checkbox" id=11 for="jp3"></label><br />
+    </form>
+    <p id=103></p>
+    <form name="form3" action="">
+      <input id="jp0" type="checkbox" class="problem3" /><label class="checkbox" id=12 for="jp0"></label>
+      <input id="jp1" type="checkbox" class="problem3" /><label class="checkbox" id=13 for="jp1"></label>
+      <input id="jp2" type="checkbox" class="problem3" /><label class="checkbox" id=14 for="jp2"></label>
+      <input id="jp3" type="checkbox" class="problem3" /><label class="checkbox" id=15 for="jp3"></label><br />
+    </form>
+    <input type="button" value="採点(一度しか押せません)" onclick="Correct_Or_Not(); disabled=true;" />
+    <p id="out"></p>
+  </body>
+  <script src="{% static "app/js/problems.js" %}"></script>
 </html>
